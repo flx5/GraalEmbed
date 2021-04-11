@@ -1,0 +1,36 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'java'
+    id "com.palantir.graal" version "0.7.2"
+}
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    jcenter()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:29.0-jre'
+
+    // Version must match with graal.graalversion
+    implementation group: 'org.graalvm.sdk', name: 'graal-sdk', version: '20.2.0'
+
+}
+
+
+
+compileJava {
+    options.release = 11
+}
+
+
+graal {
+    graalVersion '20.2.0'
+    javaVersion '11'
+   // mainClass 'NativeTest.App'
+    outputName 'libnativeimpl'
+}
